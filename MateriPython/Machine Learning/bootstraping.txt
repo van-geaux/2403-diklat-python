@@ -1,0 +1,13 @@
+n_bootstrap = 10
+scores = []
+model = LogisticRegression()
+
+for i in range(n_bootstrap):
+  X_train, X_test, y_train, y_test = train_test_split(obes_df[['Tinggi Badan','Berat Badan']], obes_df['Obesitas'], test_size=0.25)
+  model.fit(X_train, y_train)
+  predict = model.predict(X_test)
+
+  scores.append(accuracy_score(y_test, predict))
+
+print('Mean Score:',np.mean(scores),' Std Deviation Score:', np.std(scores))
+scores
